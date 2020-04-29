@@ -17,9 +17,11 @@ param($pattern = $(throw "Please specify content to search for"))
 
 $helpNames = $(Get-Help * | Where-Object { $_.Category -ne "Alias" })
 
-foreach ($helpTopic in $helpNames) {
+foreach ($helpTopic in $helpNames)
+{
    $content = Get-Help -Full $helpTopic.Name | Out-String
-   if ($content -match $pattern) {
+   if ($content -match $pattern)
+   {
       $helpTopic | Select-Object Name, Synopsis
    }
 }

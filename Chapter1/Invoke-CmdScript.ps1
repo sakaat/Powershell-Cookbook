@@ -37,7 +37,8 @@ cmd /c " `"$script`" $parameters && set > `"$tempFile`" "
 ## tempファイル内の環境変数を調べる
 ## 環境変数ごとにローカルな環境に設定する
 Get-Content $tempFile | Foreach-Object {
-    if ($_ -match "^(.*?)=(.*)$") {
+    if ($_ -match "^(.*?)=(.*)$")
+    {
         Set-Content "env:\$($matches[1])" $matches[2]
     }
 }

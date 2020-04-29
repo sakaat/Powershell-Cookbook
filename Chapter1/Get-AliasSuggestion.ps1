@@ -19,9 +19,11 @@ param($lastCommand)
 $helpMatches = @()
 
 ## エイリアス候補を取得する
-foreach ($alias in Get-Alias) {
+foreach ($alias in Get-Alias)
+{
     if ($lastCommand -match ("\b" +
-            [System.Text.RegularExpressions.Regex]::Escape($alias.Definition) + "\b")) {
+            [System.Text.RegularExpressions.Regex]::Escape($alias.Definition) + "\b"))
+    {
         $helpMatches += "Suggestion: An alias for $($alias.Definition) is $($alias.Name)"
     }
 }

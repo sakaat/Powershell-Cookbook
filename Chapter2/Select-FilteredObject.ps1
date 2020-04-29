@@ -19,7 +19,8 @@
 
 ## PowerShellは項目をパイプラインに渡す前に「begin」スクリプトブロックを
 ## 実行する
-begin {
+begin
+{
     ## 一時ファイルを作成する
     $filename = [System.IO.Path]::GetTempFileName()
 
@@ -46,7 +47,8 @@ begin {
 
 ## PowerShellは、パイプラインに渡す項目ごとに「process」スクリプトブロックを
 ## 実行する。このブロック内の「$_」変数は現在のパイプラインオブジェクトを表す
-process {
+process
+{
     ## PowerShellの書式設定(-f)演算子を使用して行をファイルに追加する。
     ## 例えば、Get-Processの出力が提供される場合、これらの行は次のようになる
     ##
@@ -60,7 +62,8 @@ process {
 
 ## すべてのオブジェクトをパイプラインに渡し終わると、
 ## PowerShellは「end」スクリプトブロックを実行する
-end {
+end
+{
     ## メモ帳を起動し、WaitForExit()メソッドを呼び出し、
     ## ユーザーがメモ帳を終了するまでスクリプトを一時停止する
     $processStartInfo = New-Object System.Diagnostics.ProcessStartInfo "notepad"
@@ -69,10 +72,12 @@ end {
     $process.WaitForExit()
 
     ## ファイルの各行を調べる
-    foreach ($line in (Get-Content $filename)) {
+    foreach ($line in (Get-Content $filename))
+    {
         ## 行が特別な形式(数字、1つのコロン、テキスト)になっているかを
         ## チェックする
-        if ($line -match "^(\d+?):.*") {
+        if ($line -match "^(\d+?):.*")
+        {
             ## その形式とマッチした場合、$matches[1]はその数を表す。
             ## この値は「process」セクションの間に保存されたオブジェクトの
             ## リストのカウンタとなる。保存されたオブジェクトのリストから
